@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Dictionary {
+public class WordList {
     private List<String> words;
     private String currentWord;
     private final String FILE_PATH = "/Users/bradysillito/Desktop/Misc Files/Hangman/src/dictionary.txt";
 
     //Dictionary initializes class variables and fills itself with words from a textFile;
 
-    public Dictionary() {
+    public WordList() {
         words = new ArrayList<>();
 
         try {

@@ -1,20 +1,20 @@
 public class HangmanGame {
     private String wordToGuess;
+
     private int totalGuess;
 
     private String userGuess;
 
-    public HangmanGame(String wordToGuess) {
-        this.wordToGuess = wordToGuess;
-        this.totalGuess = 0;
-    }
 
-    public void startGame() {
+    public void startGame(String wordToGuess) {
+        this.totalGuess = 0;
+        this.wordToGuess = wordToGuess;
+
         System.out.println("Let's play!");
-        System.out.println("The word to guess has " + wordToGuess.length() + " letters!");
+        System.out.println("The word to guess has " + this.wordToGuess.length() + " letters!");
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < wordToGuess.length(); i++) {
+        for (int i = 0; i < this.wordToGuess.length(); i++) {
             sb.append("_");
         }
 
@@ -64,7 +64,11 @@ public class HangmanGame {
     }
 
     //outputs whether the guess was correct
+
     private void guessOutput(boolean correctGuess) {
         System.out.println("Your guess was " + correctGuess);
+    }
+    public int getTotalGuess() {
+        return totalGuess;
     }
 }
