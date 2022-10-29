@@ -7,6 +7,11 @@ public class Main {
         String wordToGuess = dictionary.getWordToGuess();
         System.out.println(wordToGuess);
 
+        playGame(wordToGuess);
 
+    }
+
+    private static void playGame(String wordToGuess) {
+        System.out.println("The word to guess has " + wordToGuess.length() + " letters!");
     }
 }

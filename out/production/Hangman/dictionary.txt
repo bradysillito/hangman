@@ -8,3 +8,7 @@ cool
 beans
 awesome
 stuff
+caterpillar
+butterfly
+truck
+animals

@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Dictionary {
@@ -34,7 +35,7 @@ public class Dictionary {
     }
 
     public String getWordToGuess(){
-        this.currentWord = words.get(0);
+        this.currentWord = words.get(new Random().nextInt(0, words.size()));
         return currentWord;
     }
 
