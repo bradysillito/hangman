@@ -1,14 +1,21 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class HangmanGame {
     private String wordToGuess;
-
     private int totalGuess;
-
     private String userGuess;
+    private List<Character> correctGuesses;
+    private List<Character> incorrectGuesses;
 
+
+    /**
+     * Starts the Game and creates a blank string for the user to guess from
+     * @param wordToGuess
+     */
 
     public void startGame(String wordToGuess) {
-        this.totalGuess = 0;
-        this.wordToGuess = wordToGuess;
+        resetGame(wordToGuess);
 
         System.out.println("Let's play!");
         System.out.println("The word to guess has " + this.wordToGuess.length() + " letters!");
@@ -22,10 +29,27 @@ public class HangmanGame {
         System.out.println(sb);
     }
 
+
+    /**
+     * resets Hangman game for a new game to be played
+     * @param wordToGuess the word the user will be trying to guess
+     */
+    private void resetGame(String wordToGuess) {
+        this.totalGuess = 0;
+        this.wordToGuess = wordToGuess;
+        this.incorrectGuesses = new ArrayList<>();
+        this.correctGuesses = new ArrayList<>();
+    }
+
     public String getUserGuess() {
         return userGuess;
     }
 
+    /**
+     * Checks if the guess is correct and updates the userString accordingly
+     * @param charAt user guesss
+     * @return a string with correct guesses in the correct place
+     */
     public String checkUserGuess(char charAt) {
         //check if the char is a letter
         if(!Character.isLetter(charAt)){
@@ -34,6 +58,7 @@ public class HangmanGame {
         }
 
         //update the amount of guesses made
+        //Do this after checking if it is a letter, invalid guesses wont count
         this.totalGuess ++;
 
         boolean correctGuess = false;
@@ -57,18 +82,49 @@ public class HangmanGame {
         }
 
         //output if the guess is correct or not
-        guessOutput(correctGuess);
+        guessOutput(correctGuess,charAt);
 
         //return the userGuess string (potentially updated)
         return userGuess;
     }
 
-    //outputs whether the guess was correct
+    /**
+     * Creates response ouput for correct and incorrect guesses
+     * @param guess a boolean indicating whether the guess was true
+     * @param charAt a char, guess from the user
+     */
+    private void guessOutput(boolean guess, char charAt) {
+        System.out.println("\nYour guess was " + guess);
 
-    private void guessOutput(boolean correctGuess) {
-        System.out.println("Your guess was " + correctGuess);
+        if(guess){
+            this.correctGuesses.add(charAt);
+            System.out.println("Correct Guesses: " + correctGuesses.toString());
+        } else {
+            this.incorrectGuesses.add(charAt);
+            System.out.println(charAt + " is not in the word!");
+            System.out.println("Incorrect Guesses: " + incorrectGuesses.toString());
+        }
+
+        //Output the correctness of their guess and how many correct and incorrect guesses they have made
+        System.out.println("Correct Guesses: " + this.correctGuesses.size() + " Incorrect Guesses: " + this.incorrectGuesses.size());
     }
     public int getTotalGuess() {
         return totalGuess;
+    }
+
+    /**
+     * gets the number of correct guesses
+     * @return number of correct guess
+     */
+    public int getTotalCorrectGuesses() {
+        return correctGuesses.size();
+    }
+
+    /**
+     * gets the number of incorrect guesses
+     * @return number of incorrect guess
+     */
+    public int getTotalIncorrectGuesses() {
+        return incorrectGuesses.size();
     }
 }
